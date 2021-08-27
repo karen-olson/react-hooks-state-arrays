@@ -1,0 +1,62 @@
+// Goal 1: using a state variable to hold an array of spicy foods;
+//    Trial: call useState with an initial value of spicyFoods, destructure foods, setFoods
+//    Success
+
+// Goal 2: adding a new spicy food to the array when the button is clicked.
+//    Trial: within handleAddFood, call setFoods and pass in a CB fn
+//          CB fn takes in newFood object and spicyFoods array, uses spread operator to copy spicyFoods and
+//              adds newFood to the end of the copied array
+//    Error: "spicyFoods isn't iterable"
+//    Trial: Take arguments out of cb fn inside of setFoods
+//    Success: works --> not sure why it was trying to iterate over spicyFoods when given paramaters?
+
+// Goal 3: using that array to display each spicy food as an <li>
+//    Trial: Use .map to convert the array into DOM elements
+//    Error: Component can't return a function --> tried to add the JSX for rendering
+//            the li in the return statement (within the ul element)
+
+//    Solution: Use .map to convert the array into DOM elements BUT do it
+//              in a variable within the main function body (not the return stmt)
+
+// Hint: use the spread operator to copy arrays (and trigger state update) rather than
+//        mutating them (ex. with .push())
+
+
+  // Let's update our click feature so that when a user clicks on a food, that food's heat level is incremented by 1.
+  // update our array in state and increment the heat level only for the food that was clicked.
+  //    Trial: make a copy of the array
+  //            then, find the index of the food using indexOf and the id
+  //            then, access the food object using the index food[index].heatLevel
+  //                  and increment the heatLevel by 1
+  //    Error: not sure where to put logic of the function
+
+  //    Trial: use map to copy array and update one element by including a conditional
+  //    Error: says that each element in array needs a unique id --> forgot to return the whole food object rather
+  //           than just the incremented heat level property
+
+  //    Solution: return a copy of that food object (using spread operator) with an updated heatLevel property
+
+
+      // Goal: filter the list to only show foods from a certain cuisine
+    // what new state variable you'll need to add, and
+    // how to use that variable to determine which foods are being displayed!
+    //    Trial: Create a new state variable, cuisine
+    //    Error: had to define the variable in the main component function, not in the cb fn
+
+    //    Brainstorm: how to make only certain li elements render?
+    //                create a copy of the li array with only the foods with a matching cuisine?
+    //    Trial: create a copy of the li array (foodList) with only the foods with a matching cuisine
+    //            use .filter
+    //            use setCuisine() to update cuisine's state
+    //    Error: cuisine is still the initial value after calling setCuisine and passing the value of the event target
+    //    Brainstorm: something to do with async nature of the function. need to use an arrow function
+    //                as a cb to setCuisine. What arguments do I pass in, if any?
+
+    //    Trial: use an arrow function to setCuisine the first time
+    //    Error: when I reference cuisine later on in the function, I need to somehow access the udpated
+    //          value then, too. How?
+
+    //    Solution: Set initial value of cuisine to "All"
+    //              Add an if-else block to the udpatedList variable which will
+    //              display all foods if "all" is selected in the dropdown
+    //              Use updatedList instead of foodList when rendering Li elements
